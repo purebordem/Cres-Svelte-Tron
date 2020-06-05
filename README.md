@@ -6,7 +6,8 @@ This is a project template and build pipeline for [Crestron CH-5](https://sdkcon
 # Table of Contents
 * [Getting Started](#getting-started)
 * [Deploying to a Touch Panel](#deploying-to-a-touch-panel)
-* [Scripts](#scripts)
+* [NPM Scripts](#npm-scripts)
+* [Node CH5-Run](#node-ch5-run)
 * [Known Issues](#known-issues)
 
 ## Getting started
@@ -52,7 +53,7 @@ npm run ch5-dev
 
 *Note - This may take some time. Crestron's CrComLib, which communicates with the AV processor, adds considerable build time. If strictly working on the GUI and not integration, it is recommended to comment out `import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'` in the `src/App.svelte` file to speed up dev time*
 
-## Scripts
+## NPM Scripts
 The following scripts are available by default...
 
 ### Build
@@ -94,19 +95,19 @@ node ch5-run
 ```bash
 Available flags...
 	--name (-n)
-    Default Value: 'ch5-svelte'
+    		Default Value: 'ch5-svelte'
 	--path (-p)
-    Default Value: 'public'
+    		Default Value: 'public'
 	--output (-o)
-    Default Value: 'CH5-Build'
-  --host (-h)
-    Default Value: undefined
+    		Default Value: 'CH5-Build'
+  	--host (-h)
+    		Default Value: undefined
 	--sftp (-s)
-    Default Value: 'display'
+   		Default Value: 'display'
 	--type (-t)
-    Default Value: 'touchscreen'
+    		Default Value: 'touchscreen'
 	--dev (-d)
-    Default Value: false
+    		Default Value: false
 ```
 
 Refer to [@Crestron/ch5-utlities](https://www.npmjs.com/package/@crestron/ch5-utilities) for possible values.
