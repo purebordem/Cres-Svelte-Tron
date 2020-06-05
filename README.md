@@ -8,7 +8,7 @@ This is a project template and build pipeline for [Crestron CH-5](https://sdkcon
 * [Deploying to a Touch Panel](#deploying-to-a-touch-panel)
 * [NPM Scripts](#npm-scripts)
 * [Node CH5-Run](#node-ch5-run)
-* [Rollup.config.js](#rollup.config.js)
+* [Rollup Config](#rollup-config)
 * [Known Issues](#known-issues)
 ---
 
@@ -116,8 +116,8 @@ Refer to [@Crestron/ch5-utlities](https://www.npmjs.com/package/@crestron/ch5-ut
 
 If a value is not provided for a flag, the default value will be used. In the case of `--host`, undefined will cause the script to only archive the app as a `.ch5z` file and not try to deploy the archive.
 
-## Rollup.config.js
-Cres-Svelte-Tron uses Rollup as the app bundler since it is the default used by the [Svelte Template](https://github.com/sveltejs/template). Changes made to this config will alter how Rollup bundles the project. You can add support for other features such as PostCSS, SASS, and others here. The `production` variable is used to tell Rollup what to do for production builds vs. dev builds. Some useful Rollup plugins are included by default in Cres-Svelte-Tron.
+## Rollup Config
+Cres-Svelte-Tron uses Rollup as the app bundler since it is the default used by the [Svelte Template](https://github.com/sveltejs/template). Changes made to `rollup.config.js` will alter how Rollup bundles the project. You can add support for other features such as PostCSS, SASS, and others here. The `production` variable is used to tell Rollup what to do for production builds vs. dev builds. Some useful Rollup plugins are included by default in Cres-Svelte-Tron.
 
 ### Limitations
 The version of Chromium currently running on Crestron touch panels does not appear to support ES or CJS modules. This means Rollup must be set to use IIFE as an output format. Because of this format limitation, items such as dynamic imports and code splitting are not currently available.
