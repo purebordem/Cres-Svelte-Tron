@@ -47,6 +47,39 @@ npm run ch5-dev
 
 *Note - This may take some time. Crestron's CrComLib, which communicates with the AV processor, adds considerable build time. If strictly working on the GUI and not integration, it is recommended to comment out `import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'` in the `src/App.svelte` file to speed up dev time*
 
+## Scripts
+The following scripts are available by default...
+
+### Build
+This builds the app
+```bash
+npm run build
+```
+
+### Dev
+This builds the app, in dev mode, with live reload, via [localhost:5000](http://localhost:5000)
+```bash
+npm run dev
+```
+
+### Start
+This will deploy the app locally via [localhost:5000](http://localhost:5000) and your current IP address. Good for testing tablets, phones, etc.
+```bash
+npm run start
+```
+
+### CH5-Build
+This builds the app, and deploys it to the touch panel at the specified in the `package.json`
+```bash
+npm run ch5-build
+```
+
+### CH5-Dev
+This builds the app, in dev mode, with live reload, and deploys it to the touch panel at the specified in the `package.json`
+```bash
+npm run ch5-build
+```
+
 ## Known issues
 ### Previous version of app sent to touch panel (always one revision behind)
 Currently the CH5-Utlities responsible for creaing the `.ch5z` file grab the previously compiled app...despite the fact the files are overwritten (still figuring that one out...)
