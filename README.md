@@ -9,6 +9,7 @@ This is a project template and build pipeline for [Crestron CH-5](https://sdkcon
 * [NPM Scripts](#npm-scripts)
 * [Node CH5-Run](#node-ch5-run)
 * [Known Issues](#known-issues)
+---
 
 ## Getting started
 
@@ -114,6 +115,8 @@ Refer to [@Crestron/ch5-utlities](https://www.npmjs.com/package/@crestron/ch5-ut
 
 If a value is not provided for a flag, the default value will be used. In the case of `--host`, undefined will cause the script to only archive the app as a `.ch5z` file and not try to deploy the archive.
 
+## Rollup.config.js
+Cres-Svelte-Tron uses Rollup as the app bundler since it is the default used by the [Svelte Template](https://github.com/sveltejs/template). Changes made to this config will alter how Rollup bundles the project. You can add support for other features such as PostCSS, SASS, and others here. The `production` variable is used to tell Rollup what to do for production builds vs. dev builds. Some useful Rollup plugins are included by default in Cres-Svelte-Tron.
 
 ## Known Issues
 ### Previous version of app sent to touch panel (always one revision behind)
