@@ -136,3 +136,6 @@ The version of Chromium currently running on Crestron touch panels does not appe
 ### Previous version of app sent to touch panel (always one revision behind)
 Currently CH5-Utlities, responsible for creaing the `.ch5z` file, grabs the previously compiled files...despite the fact the files are overwritten (still figuring that one out...)
 * Workaround - Rebuild the app again. If using live reload, edit a file and re-save.
+
+### The dev console on the touch panel keeps saying 'null'
+The live reload feature uses websockets on [localhost:5000](http://localhost:5000) to check for new updates. The touch panel however is not running a server itselg so there is no [localhost:5000](http://localhost:5000) to communicate back to.
