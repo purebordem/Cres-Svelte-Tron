@@ -5,6 +5,9 @@ This is a project template and build pipeline for [Crestron CH-5](https://sdkcon
 ---
 # Table of Contents
 * [Getting Started](#getting-started)
+* [Deploying to a Touch Panel](#deploying-to-a-touch-panel)
+* [Scripts](#scripts)
+* [Known Issues](#known-issues)
 
 ## Getting started
 
@@ -111,7 +114,7 @@ Refer to [@Crestron/ch5-utlities](https://www.npmjs.com/package/@crestron/ch5-ut
 If a value is not provided for a flag, the default value will be used. In the case of `--host`, undefined will cause the script to only archive the app as a `.ch5z` file and not try to deploy the archive.
 
 
-## Known issues
+## Known Issues
 ### Previous version of app sent to touch panel (always one revision behind)
 Currently the CH5-Utlities responsible for creaing the `.ch5z` file grab the previously compiled app...despite the fact the files are overwritten (still figuring that one out...)
 * Workaround - Rebuild the app again. If using live reload, edit a file and re-save.
