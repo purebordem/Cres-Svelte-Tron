@@ -124,7 +124,7 @@ To get around this issue, Cres-Svelte-Tron uses [Eruda](https://github.com/liril
 import * as eruda from 'eruda';
 eruda.init();
 ```
-Rollup will automatically remove this when build for production (no `--dev` flag for `ch5-run`).
+Rollup will automatically remove this when building for production (`npm run ch5-build` or `node ch5-run` with no `--dev` flag).
 
 ## Rollup Config
 Cres-Svelte-Tron uses Rollup as the app bundler since it is the default used by the [Svelte Template](https://github.com/sveltejs/template). Changes made to `rollup.config.js` will alter how Rollup bundles the project. You can add support for other features such as PostCSS, SASS, and others here. The `production` variable is used to tell Rollup what to do for production builds vs. dev builds. Some useful Rollup plugins are included by default in Cres-Svelte-Tron.
