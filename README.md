@@ -6,7 +6,7 @@ This is a project template and build pipeline for [Crestron CH-5](https://sdkcon
 
 ## Getting started
 
-If do not already have it, install [Node.js](https://nodejs.org) and [Git](https://git-scm.com/)
+If you do not already have it, install [Node.js](https://nodejs.org) and [Git](https://git-scm.com/)
 
 * *Note - Cres-Svelte-Tron has only been tested with the latest LTS version*
 
