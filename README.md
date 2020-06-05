@@ -77,8 +77,37 @@ npm run ch5-build
 ### CH5-Dev
 This builds the app, in dev mode, with live reload, and deploys it to the touch panel at the specified in the `package.json`
 ```bash
-npm run ch5-build
+npm run ch5-dev
 ```
+
+## Node CH5-Run
+This is direct usage of the `ch5-run.js` script used in other scripts. It provides a similar abstraction to the [CH5-Utilities-CLI](https://www.npmjs.com/package/@crestron/ch5-utilities-cli).
+```bash
+node ch5-run
+```
+
+```bash
+Available flags...
+	--name (-n)
+    Default Value: 'ch5-svelte'
+	--path (-p)
+    Default Value: 'public'
+	--output (-o)
+    Default Value: 'CH5-Build'
+  --host (-h)
+    Default Value: undefined
+	--sftp (-s)
+    Default Value: 'display'
+	--type (-t)
+    Default Value: 'touchscreen'
+	--dev (-d)
+    Default Value: false
+```
+
+Refer to [@Crestron/ch5-utlities](https://www.npmjs.com/package/@crestron/ch5-utilities) for possible values.
+
+If a value is not provided for a flag, the default value will be used. In the case of `--host`, undefined will cause the script to only archive the app as a `.ch5z` file and not try to deploy the archive.
+
 
 ## Known issues
 ### Previous version of app sent to touch panel (always one revision behind)
