@@ -12,7 +12,7 @@ If do not already have it, install [Node.js](https://nodejs.org) and [Git](https
 
 Navigate to a location on your drive where you wish to install and clone this repository...
 ```bash
-git clone https://github.com/libgit2/libgit2
+git clone https://github.com/purebordem/Cres-Svelte-Tron
 ```
 
 Next, inside the cloned repository, install the required dependencies...
