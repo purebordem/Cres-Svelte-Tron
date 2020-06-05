@@ -2,7 +2,6 @@
 
 This is a project template and build pipeline for [Crestron CH-5](https://sdkcon78221.crestron.com/sdk/Crestron_HTML5UI/Content/Topics/Home.htm) apps using the [Svelte](https://svelte.dev) framework, [Rollup](https://rollupjs.org/guide/en/), and [Eruda](https://github.com/liriliri/eruda). It lives at https://github.com/purebordem/Cres-Svelte-Tron.
 
----
 # Table of Contents
 * [Getting Started](#getting-started)
 * [Deploying to a Touch Panel](#deploying-to-a-touch-panel)
@@ -125,5 +124,5 @@ The version of Chromium currently running on Crestron touch panels does not appe
 
 ## Known Issues
 ### Previous version of app sent to touch panel (always one revision behind)
-Currently the CH5-Utlities responsible for creaing the `.ch5z` file grab the previously compiled app...despite the fact the files are overwritten (still figuring that one out...)
+Currently CH5-Utlities, responsible for creaing the `.ch5z` file, grabs the previously compiled files...despite the fact the files are overwritten (still figuring that one out...)
 * Workaround - Rebuild the app again. If using live reload, edit a file and re-save.
