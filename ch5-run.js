@@ -1,12 +1,15 @@
 
 const optionDefinitions = [
-	{ name: 'name', alias: 'n', type: String, defaultValue: 'ch5-svelte'},
-	{ name: 'path', alias: 'p', type: String, defaultValue: 'public'},
-	{ name: 'output', alias: 'o', type: String, defaultValue: 'CH5-Build'},
-	{ name: 'host', alias: 'h', type: String, defaultValue: undefined},
-	{ name: 'sftp', alias: 's', type: String, defaultValue: 'display'},
-	{ name: 'type', alias: 't', type: String, defaultValue: 'touchscreen'},
-	{ name: 'dev', alias: 'd', type: Boolean, defaultValue: false}
+	{ name: 'name', type: String, defaultValue: 'ch5-svelte'},
+	{ name: 'path', type: String, defaultValue: 'public'},
+	{ name: 'output', type: String, defaultValue: 'CH5-Build'},
+	{ name: 'host', type: String, defaultValue: undefined},
+	{ name: 'sftp', type: String, defaultValue: 'display'},
+	{ name: 'auth', type: Boolean, defaultValue: false},
+	{ name: 'user', type: String, defaultValue: undefined},
+	{ name: 'pass', type: String, defaultValue: undefined},
+	{ name: 'type', type: String, defaultValue: 'touchscreen'},
+	{ name: 'dev', type: Boolean, defaultValue: false}
 ]
 const commandLineArgs = require('command-line-args');
 const cliOptions = commandLineArgs(optionDefinitions);
@@ -63,6 +66,8 @@ loadConfigFile(path.resolve(__dirname, 'rollup.config.js'))
 			{
 				controlSystemHost: cliOptions.host,
 				sftpDirectory: cliOptions.sftp,
+				sftpUser: cliOptions.user,
+				sftpPassword: cliOptions.pass,
 				deviceType: cliOptions.type
 			}
 		).then(()=>{
