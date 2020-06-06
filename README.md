@@ -139,20 +139,20 @@ Currently CH5-Utlities, responsible for creaing the `.ch5z` file, grabs the prev
 * Workaround - Rebuild the app again. If using live reload, edit a file and re-save.
 
 ### The dev console on the touch panel keeps saying 'null'
-The live reload feature uses websockets on [localhost:5000](http://localhost:5000) to check for new updates. The touch panel however is not running a server so there is no [localhost:5000](http://localhost:5000) to communicate back to.
+The live reload feature uses websockets on [localhost:35729](http://localhost:35729) to check for new updates. The touch panel however is not running a server so there is no [localhost](http://localhost) to communicate back to.
 
 ## FAQ
 ### Why Cres-Svelte-Tron?
 Because [Svelte is awesome](https://svelte.dev/tutorial/basics)
 
-## Ok, why Svelte?
+### Ok, why Svelte?
 It is a compiled framework unlike Angular, React, and Vue. This means it is generally smaller and faster. It also tries to stay closer to regular HTML/JS/CSS without completely re-inventing how to develop for the web. Think of it as adding language features and taking away some of the annoying parts.
 
-## Who should use Cres-Svelte-Tron?
+### Who should use Cres-Svelte-Tron?
 Everyone! More specifically, if you find yourself needing more flexibility than the regular CH5 components provide but find CH5-Angular confusing, give Cres-Svelte-Tron a shot.
 
-## How do I actually interface with the AV processor though?
+### How do I actually interface with the AV processor though?
 You need to use the `CrComLib` from Crestron. Make sure you have `import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'` somewhere in your project. See the CH5-Utility-Functions section [here](https://sdkcon78221.crestron.com/downloads/ShowcaseApp/utility-functions/utility-subscribe-signal-script.html)
 
-## The demo app doesn't really do anything, I am not impressed
+### The demo app doesn't really do anything, I am not impressed
 Its just a test to make sure everything installed and is setup correctly. I don't have time to make a full fledge demo app XD.
