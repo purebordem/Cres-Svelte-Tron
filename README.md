@@ -1,3 +1,4 @@
+![CH5-Logo](https://sdkcon78221.crestron.com/downloads/ShowcaseApp/img/ch5-logo-dev-20181017-03.svg) ![Svelte-Logo](https://svelte.dev/svelte-logo-horizontal.svg)
 # Cres-Svelte-Tron
 
 This is a project template and build pipeline for [Crestron CH-5](https://sdkcon78221.crestron.com/sdk/Crestron_HTML5UI/Content/Topics/Home.htm) apps using the [Svelte](https://svelte.dev) framework, [Rollup](https://rollupjs.org/guide/en/), and [Eruda](https://github.com/liriliri/eruda). It lives at https://github.com/purebordem/Cres-Svelte-Tron.
@@ -112,7 +113,7 @@ Available flags...
 	--pass
     		Default Value: undefined	
 	--sftp
-   			Default Value: 'display'
+   		Default Value: 'display'
 	--type
     		Default Value: 'touchscreen'
 	--dev
