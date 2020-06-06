@@ -1,4 +1,4 @@
-<div style="display:flex; max-wdith:100%">
+<div style="display:flex">
 <img src="https://sdkcon78221.crestron.com/downloads/ShowcaseApp/img/ch5-logo-dev-20181017-03.svg"> <img src="https://svelte.dev/svelte-logo-horizontal.svg">!
 </div>
 
