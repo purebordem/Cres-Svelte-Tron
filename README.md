@@ -153,3 +153,6 @@ Everyone! More specifically, if you find yourself needing more flexibility than 
 
 ## How do I actually interface with the AV processor though?
 You need to use the `CrComLib` from Crestron. Make sure you have `import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'` somewhere in your project. See the CH5-Utility-Functions section [here](https://sdkcon78221.crestron.com/downloads/ShowcaseApp/utility-functions/utility-subscribe-signal-script.html)
+
+## The demo app doesn't really do anything, I am not impressed
+Its just a test to make sure everything installed and is setup correctly. I don't have time to make a full fledge demo app XD.
