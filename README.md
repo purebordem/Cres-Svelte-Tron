@@ -146,7 +146,7 @@ The live reload feature uses websockets on [localhost:35729](http://localhost:35
 Because [Svelte is awesome](https://svelte.dev/tutorial/basics)
 
 ### Ok, why Svelte?
-It is a compiled framework unlike Angular, React, and Vue. This means it is generally smaller and faster. It also tries to stay closer to regular HTML/JS/CSS without completely re-inventing how to develop for the web. Think of it as adding language features and taking away some of the annoying parts.
+It is a compiled framework unlike Angular, React, and Vue. This means it is generally smaller and faster. It also tries to stay closer to regular HTML/JS/CSS without completely re-inventing how to develop for the web. Think of it as adding language features and taking away some of the annoying parts. You get the benefit of two-way binding, reactivity, scoped styles, if/else for HTML, and a bunch more.
 
 ### Who should use Cres-Svelte-Tron?
 Everyone! More specifically, if you find yourself needing more flexibility than the regular CH5 components provide but find CH5-Angular confusing, give Cres-Svelte-Tron a shot.
