@@ -94,7 +94,7 @@ npm run ch5-dev
 ```
 
 ## Node CH5-Run
-This is direct usage of the `ch5-run.js` script used in other scripts. It provides a similar abstraction to the [CH5-Utilities-CLI](https://www.npmjs.com/package/@crestron/ch5-utilities-cli). Running directly will buil the app and attempt to archive or deploy the project for CH5.
+This is direct usage of the `ch5-run.js` script used in other scripts. It provides a similar abstraction to the [CH5-Utilities-CLI](https://www.npmjs.com/package/@crestron/ch5-utilities-cli). Running directly will build the app and attempt to archive or deploy the project for CH5.
 ```bash
 node ch5-run
 ```
