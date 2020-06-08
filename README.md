@@ -42,7 +42,7 @@ Navigate to [localhost:5000](http://localhost:5000). You should see the test app
 ## Deploying to a Touch Panel
 *Note - Only specific Crestron touch panels support HTML/JS/CSS based GUIs. The firmware must also be up to date.*
 
-There are several ways to build and deploy to a Crestron touch panel. The easist to use the `ch5-dev` script. This will auto-build the app, package it using [@Crestron/ch5-utlities](https://www.npmjs.com/package/@crestron/ch5-utilities), and deploy it to a specified touch panel. This script will also provide live reloading, building, and deployment. The app will also be accessible on [localhost:5000](http://localhost:5000).
+There are several ways to build and deploy to a Crestron touch panel. The easist is to use the `ch5-dev` script. This will auto-build the app, package it using [@Crestron/ch5-utlities](https://www.npmjs.com/package/@crestron/ch5-utilities), and deploy it to a specified touch panel. This script will also provide live reloading, building, and deployment. The app will also be accessible on [localhost:5000](http://localhost:5000).
 
 First, go to the `package.json` file and change the host name in the following scripts to your panel's IP address...
 
