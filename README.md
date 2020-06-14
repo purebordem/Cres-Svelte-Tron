@@ -21,7 +21,7 @@ If you do not already have it, install [Node.js](https://nodejs.org) and [Git](h
 
 * *Note - Cres-Svelte-Tron has only been tested with the latest LTS version*
 
-Navigate to a location on your drive where you wish to install and clone this repository...
+Using a shell, navigate to a location on your drive where you wish to install and clone this repository...
 ```bash
 git clone https://github.com/purebordem/Cres-Svelte-Tron
 ```
@@ -36,7 +36,7 @@ Verify the installation by first running...
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see the test app running locally on your machine. Use `Ctrl+C` to end the dev session.
+Navigate to [localhost:5000](http://localhost:5000). You should see the test app running locally on your machine. Use `Ctrl+C` inside the shell to end the dev session.
 
 
 ## Deploying to a Touch Panel
@@ -58,7 +58,7 @@ npm run ch5-dev
 
 *Note - This may take some time. Crestron's CrComLib, which communicates with the AV processor, adds considerable build time. If strictly working on the GUI and not integration, it is recommended to comment out `import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'` in the `src/App.svelte` file to speed up dev time*
 
-If you are working with a touch panel with authentication enabled, you will want to add the `--user` and `--pass` flags to the scripts. The prompt feature of the CH5-CLI is not used since it would require manual entry everytime if using live reload, defeating the purpose.
+If you are working with a touch panel with authentication enabled, you will want to add the `--user` and `--pass` flags to the scripts. The prompt feature of the CH5-CLI is not used since it would require manual entry everytime the page reloads, defeating the purpose of live reload.
 
 ## NPM Scripts
 The following scripts are available by default...
