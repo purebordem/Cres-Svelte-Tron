@@ -6,27 +6,28 @@
     let scrnUpVal = ''
     let scrnDownVal = ''
     let lightVal = 80
-    let publishVal
+    let publishVal = 0
     let min = 0
     let max = 100
-    let test
+    let pub = false
 
     //convert user friendly slider values to full range Crestron analog join
     $:{
-        let OldRange = (max- min)  
-        publishVal = (((lightVal - min) * 65535) / OldRange)
+        let OldRange = (max- min)
+        if(pub) publishVal = (((lightVal - min) * 65535) / OldRange)
     }
 
     //Enviroment subscriptions
     $: CrComLib.publishEvent('b', '7', scrnUpVal)
     $: CrComLib.publishEvent('b', '8', scrnDownVal)
 
-    //audio subscription and publish
-    CrComLib.subscribeState('n', '2', (data)=>{
-        //convert full range Crestron Analog Join to user values
-        lightVal =  (data * max) / 65535 
-    })
-    $: CrComLib.publishEvent('n', '2', publishVal)
+    // //light subscription and publish
+    // CrComLib.subscribeState('n', '2', (data)=>{
+    //     //convert full range Crestron Analog Join to user values
+    //     pub = false
+    //     lightVal = (data * max) / 65535 
+    // })
+    // $: CrComLib.publishEvent('n', '2', publishVal)
 
 </script>
 
@@ -38,7 +39,7 @@
     </div>
     <div id="lights">
         Lights
-        <Slider class='light' type='vert' bind:value={lightVal} min={min} max={max}></Slider>
+        <Slider class='light' type='vert' bind:value={lightVal} min={min} max={max} on:clicked={()=>pub=true}></Slider>
     </div>
 </div>
 

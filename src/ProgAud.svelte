@@ -12,9 +12,11 @@
     let showHint
     let hintTimer
     let repeat = 20
-    let publishVal
+    let publishVal = 0
+    let pub = false
 
     function Volume(state){
+        pub = true
         if(mute) Mute(false)
 
         if(state) progVal = progVal + 1
@@ -22,6 +24,7 @@
     }
 
     function SlideClicked(){
+        pub = true
         if(mute){
             muteVal = progVal
             Mute(false)
@@ -37,6 +40,7 @@
     }
 
     function Mute(state){
+        pub = true
         if(state){
             mute = true
             muteVal = progVal
@@ -50,13 +54,18 @@
 
     //convert user friendly slider values to full range Crestron analog join
     $:{
-        let OldRange = (max- min)  
-        publishVal = (((progVal - min) * 65535) / OldRange)
+        let OldRange = max - min 
+        if(pub) publishVal = (((progVal - min) * 65535) / OldRange)
     }
 
-    //audio subscription and publish
-    CrComLib.subscribeState('n', '1', (data)=>progVal = data)
-    $: CrComLib.publishEvent('n', '1', publishVal)
+    //light subscription and publish
+        CrComLib.subscribeState('n', '3', (data)=>{
+        //convert full range Crestron Analog Join to user values
+        pub = false
+        progVal = (data * max) / 65535 
+    })
+
+    $: CrComLib.publishEvent('n', '3', publishVal)
 
 </script>
 
