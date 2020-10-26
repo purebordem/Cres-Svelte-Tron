@@ -20,6 +20,8 @@
 	import Sources from './Sources.svelte'
 	import Enviroment from './Enviroment.svelte'
 	import Presets from './Presets.svelte'
+	import ControlsDefault from './ControlsDefault.svelte'
+	import ControlsBlu from './ControlsBlu.svelte'
 
 	//import a Store to allow sharing of variables across components
 	import { presetShow } from './AppState.js'
@@ -28,9 +30,14 @@
 	//use of 'let', it is how Svelte handles variables for compiling
 	let popup = false
 	let pwrVal = ''
+	let controls = ControlsDefault
 
 	//Subcribe to listen for join feedback from the control system
 	CrComLib.subscribeState('b', '1', (data)=>pwrVal = data)
+	CrComLib.subscribeState('n', '3', (data)=>{
+		if(data == 3) controls = ControlsBlu
+		else controls = ControlsDefault //controlsdefault
+	})
 
 	//the $: makes this a reactive statement so whenever a value changes, the function is automatically called
 	$: CrComLib.publishEvent('b', '1', pwrVal)
@@ -58,13 +65,11 @@
 		<Enviroment></Enviroment>
 		<Presets></Presets>
 	</div>
-	<div id="controls">
-		<img src="images/ch5-logo.svg" class='logo'>
-		<img src="images/plus.svg" class='logo math'>
-		<img src="images/svelte-logo.svg" class='logo'>
-		<img src="images/equal.svg" class='logo math'>
-		<img src="images/heart.svg" class='logo'>
-	</div>
+	<!-- 
+		We can dynamically replace a component using the special svelte:component
+		Changing the value of Controls will destory the current component and create the new one
+	-->
+	<svelte:component this={controls}/>
 </div>
 <div id="footer">
 	<!-- 
@@ -87,8 +92,11 @@
 		overflow:hidden;
 	}
 	:root {
-		--color-main: #fffcf8;
-		--color-contrast: #2b2522;
+		--color-main: rgba(255, 252, 248, 1);
+		--color-contrast: rgba(43, 37, 34, 1);
+		--color-icon-def: rgba(128, 128, 128, 1);
+		--color-highlight-1: rgba(255, 62, 0, 1);
+		--color-highlight-2: rgba(58, 171, 255, 1);
 	}
 
 	:global(body) {
@@ -108,15 +116,6 @@
 		display: grid;
 		gap: 1em;
 		grid-template-columns: 15% 1fr 1em;
-		grid-auto-flow: column;
-		justify-items: center;
-		align-items: center;
-	}
-
-	#controls {
-		display: grid;
-		gap: 1em;
-		grid-template-columns: minmax(0,90%);
 		grid-auto-flow: column;
 		justify-items: center;
 		align-items: center;
@@ -146,14 +145,6 @@
 		width: 3em;
 	}
 
-	.logo {
-		width: 100%;
-	}
-
-	.math {
-		width: 50%;
-	}
-
 	#nav {
 		position: relative;
 		display: grid;
@@ -168,12 +159,6 @@
 	@media screen and (max-aspect-ratio:1/1){
 		#main {
 			grid-auto-flow: row;
-		}
-		img {
-			width: 40%;
-		}
-		.math {
-			width: 15%;
 		}
 	}
 

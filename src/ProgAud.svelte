@@ -2,6 +2,7 @@
     import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'
     import Btn from './SVUG-Btn.svelte'
     import Slider from './SVUG-Slider.svelte'
+    import { tweened } from 'svelte/motion'
 
     //move all the GUI logic for program audio to the front-end and away from SIMPL (because we can)
     let progVal = 0
@@ -14,6 +15,9 @@
     let repeat = 20
     let publishVal = 0
     let pub = false
+    const tweenedVal = tweened(0,{
+        duration: 500
+    })
 
     function Volume(state){
         pub = true
@@ -58,14 +62,15 @@
         if(pub) publishVal = (((progVal - min) * 65535) / OldRange)
     }
 
-    //light subscription and publish
-        CrComLib.subscribeState('n', '3', (data)=>{
+    //audio subscription and publish
+    CrComLib.subscribeState('n', '1', (data)=>{
         //convert full range Crestron Analog Join to user values
         pub = false
-        progVal = (data * max) / 65535 
+        tweenedVal.set((data * max) / 65535)
     })
-
-    $: CrComLib.publishEvent('n', '3', publishVal)
+    
+    $: progVal = $tweenedVal
+    $: CrComLib.publishEvent('n', '1', publishVal)
 
 </script>
 

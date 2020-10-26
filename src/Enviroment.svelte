@@ -2,6 +2,7 @@
     import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'
     import Btn from './SVUG-Btn.svelte'
     import Slider from './SVUG-Slider.svelte'
+    import { tweened } from 'svelte/motion'
 
     let scrnUpVal = ''
     let scrnDownVal = ''
@@ -10,7 +11,10 @@
     let min = 0
     let max = 100
     let pub = false
-
+    const tweenVal = tweened(0, {
+		duration: 500
+    });
+    
     //convert user friendly slider values to full range Crestron analog join
     $:{
         let OldRange = (max- min)
@@ -21,13 +25,14 @@
     $: CrComLib.publishEvent('b', '7', scrnUpVal)
     $: CrComLib.publishEvent('b', '8', scrnDownVal)
 
-    // //light subscription and publish
-    // CrComLib.subscribeState('n', '2', (data)=>{
-    //     //convert full range Crestron Analog Join to user values
-    //     pub = false
-    //     lightVal = (data * max) / 65535 
-    // })
-    // $: CrComLib.publishEvent('n', '2', publishVal)
+    //light subscription and publish
+    CrComLib.subscribeState('n', '2', (data)=>{
+        //convert full range Crestron Analog Join to user values
+        pub = false
+        tweenVal.set((data * max) / 65535)
+    })
+    $: lightVal = $tweenVal 
+    $: CrComLib.publishEvent('n', '2', publishVal)
 
 </script>
 
