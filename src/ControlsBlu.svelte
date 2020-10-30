@@ -1,34 +1,73 @@
 <script>
+    import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'
     import Btn from './SVUG-Btn.svelte'
     //quick easy animations when component created/destoryed
     import { fly } from 'svelte/transition'
 
-    let transIn = {delay: 200, y: 100, duration: 200 }
-    let transOut = {y:-100, duration: 200}
+    let transInDpad = {delay: 200, x: -300, duration: 200 }
+    let transOutDpad = {x:300, duration: 200}
+    let transInCtrls = {delay: 200, x: 300, duration: 200 }
+    let transOutCtrls = {x:-300, duration: 200}
+
+    let bluUp = false
+    let bluDown = false
+    let bluLeft = false
+    let bluRight = false
+    let bluEnter = false
+    let bluSkipRW = false
+    let bluRw = false
+    let bluPlay = false
+    let bluFfw = false
+    let bluSkipFfw = false
+    let bluStop = false
+    let bluMenu = false
+    let bluEject = false
+
+    $: CrComLib.publishEvent('b', '20', bluUp)
+    $: CrComLib.publishEvent('b', '21', bluDown)
+    $: CrComLib.publishEvent('b', '22', bluLeft)    
+    $: CrComLib.publishEvent('b', '23', bluRight)
+    $: CrComLib.publishEvent('b', '24', bluEnter)
+    $: CrComLib.publishEvent('b', '25', bluSkipRW)
+    $: CrComLib.publishEvent('b', '26', bluRw)
+    $: CrComLib.publishEvent('b', '27', bluPlay)
+    $: CrComLib.publishEvent('b', '28', !bluPlay)
+    $: CrComLib.publishEvent('b', '29', bluFfw)
+    $: CrComLib.publishEvent('b', '30', bluSkipFfw)
+    $: CrComLib.publishEvent('b', '31', bluStop)
+    $: CrComLib.publishEvent('b', '32', bluMenu)
+    $: CrComLib.publishEvent('b', '33', bluEject)
+
 </script>
 
-<div class='wrap' in:fly={transIn} out:fly={transOut}>
-    <div class='dpad-wrap'>
+<div class='wrap'>
+    <div class='dpad-wrap' in:fly={transInDpad} out:fly={transOutDpad}>
         <div class='dpad'>
-            <Btn class='dpad-btn up'><img src="images/arrow-up.svg"></Btn>
-            <Btn class='dpad-btn right'><img src="images/arrow-right.svg"></Btn>
-            <Btn class='dpad-btn left'><img src="images/arrow-left.svg"></Btn>
-            <Btn class='dpad-btn down'><img src="images/arrow-down.svg"></Btn>
+            <Btn class='dpad-btn up' bind:value={bluUp}><img src="images/arrow-up.svg"></Btn>
+            <Btn class='dpad-btn right' bind:value={bluRight}><img src="images/arrow-right.svg"></Btn>
+            <Btn class='dpad-btn left' bind:value={bluLeft}><img src="images/arrow-left.svg"></Btn>
+            <Btn class='dpad-btn down' bind:value={bluDown}><img src="images/arrow-down.svg"></Btn>
         </div>
-        <Btn class='dpad-btn center'></Btn>
+        <Btn class='dpad-btn center' bind:value={bluEnter}></Btn>
     </div>
-    <div class='controls'>
+    <div class='controls' in:fly={transInCtrls} out:fly={transOutCtrls}>
         <div class='controls-sub'>
-            <Btn class='blu'><img src="images/skip-rw.svg"></Btn>
-            <Btn class='blu'><img src="images/rw.svg"></Btn>
-            <Btn class='blu'><img src="images/play.svg"></Btn>
-            <Btn class='blu'><img src="images/ffw.svg"></Btn>
-            <Btn class='blu'><img src="images/skip-ffw.svg"></Btn>
+            <Btn class='blu' bind:value={bluSkipRW}><img src="images/skip-rw.svg"></Btn>
+            <Btn class='blu' bind:value={bluRw}><img src="images/rw.svg"></Btn>
+            <Btn class='blu' bind:value={bluPlay} type='toggle'>
+                {#if bluPlay}
+                    <img src="images/pause.svg">
+                {:else}
+                    <img src="images/play.svg">
+                {/if}
+            </Btn>
+            <Btn class='blu' bind:value={bluFfw}><img src="images/ffw.svg"></Btn>
+            <Btn class='blu' bind:value={bluSkipFfw}><img src="images/skip-ffw.svg"></Btn>
         </div>
         <div class='controls-sub'>
-            <Btn class='blu'><img src="images/stop.svg"></Btn>
-            <Btn class='blu'><img src="images/menu.svg"></Btn>
-            <Btn class='blu'><img src="images/eject.svg"></Btn>
+            <Btn class='blu' bind:value={bluStop}><img src="images/stop.svg"></Btn>
+            <Btn class='blu' bind:value={bluMenu}><img src="images/menu.svg"></Btn>
+            <Btn class='blu' bind:value={bluEject}><img src="images/eject.svg"></Btn>
         </div>
     </div>
 </div>

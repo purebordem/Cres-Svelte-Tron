@@ -32,7 +32,7 @@
     "dev": "run-p start:dev autobuild",
     "start": "sirv public --single --host 0.0.0.0",
     "start:dev": "sirv public --single --dev",
-    "ch5-runDev": "node ch5-run --host 192.168.1.101 --dev --user admin --pass Titp@CMUTEF",
+    "ch5-runDev": "node ch5-run --host XXX.XXX.XXX.XXX --dev",
     "ch5-build": "node ch5-run --host XXX.XXX.XXX.XXX",
     "ch5-dev": "run-p start:dev ch5-runDev"
   }

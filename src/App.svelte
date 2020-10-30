@@ -33,7 +33,9 @@
 	let controls = ControlsDefault
 
 	//Subcribe to listen for join feedback from the control system
-	CrComLib.subscribeState('b', '1', (data)=>pwrVal = data)
+	CrComLib.subscribeState('b', '1', (data)=>{
+		pwrVal = data
+	})
 	CrComLib.subscribeState('n', '3', (data)=>{
 		if(data == 3) controls = ControlsBlu
 		else controls = ControlsDefault //controlsdefault
