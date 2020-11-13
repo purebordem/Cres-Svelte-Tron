@@ -2,7 +2,7 @@
     import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'
 
     //Import the Store so we can share data back and forth
-    import { presetShow } from './AppState.js'
+    import { presetShow } from './AppStore.js'
 	import Btn from './SVUG-Btn.svelte'
 
     let pres1Val = ''

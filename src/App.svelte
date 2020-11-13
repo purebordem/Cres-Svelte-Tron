@@ -22,9 +22,10 @@
 	import Presets from './Presets.svelte'
 	import ControlsDefault from './ControlsDefault.svelte'
 	import ControlsBlu from './ControlsBlu.svelte'
+	import ControlsVTC from './ControlsVTC.svelte'
 
 	//import a Store to allow sharing of variables across components
-	import { presetShow } from './AppState.js'
+	import { presetShow } from './AppStore.js'
 
 	//these variables are accessible to the JS and HTML inside this file, don't worry about the odd
 	//use of 'let', it is how Svelte handles variables for compiling
@@ -38,7 +39,7 @@
 	})
 	CrComLib.subscribeState('n', '3', (data)=>{
 		if(data == 3) controls = ControlsBlu
-		else controls = ControlsDefault //controlsdefault
+		else controls = ControlsVTC //controlsdefault
 	})
 
 	//the $: makes this a reactive statement so whenever a value changes, the function is automatically called
