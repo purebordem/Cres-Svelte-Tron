@@ -2,6 +2,7 @@
 	//import a library like CH5 CrComLib
 	import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'
 
+	console.log(CrComLib)
 	//attach required CrComLib functions so Svelte can communicate with CH5
 	window.bridgeReceiveIntegerFromNative = CrComLib.bridgeReceiveIntegerFromNative
 	window.bridgeReceiveBooleanFromNative = CrComLib.bridgeReceiveBooleanFromNative
@@ -26,6 +27,7 @@
 
 	//import a Store to allow sharing of variables across components
 	import { presetShow } from './AppStore.js'
+import ControlsVtc from './ControlsVTC.svelte';
 
 	//these variables are accessible to the JS and HTML inside this file, don't worry about the odd
 	//use of 'let', it is how Svelte handles variables for compiling
@@ -39,7 +41,8 @@
 	})
 	CrComLib.subscribeState('n', '3', (data)=>{
 		if(data == 3) controls = ControlsBlu
-		else controls = ControlsVTC //controlsdefault
+		else if(data == 4) controls = ControlsVTC
+		else controls = ControlsVTC
 	})
 
 	//the $: makes this a reactive statement so whenever a value changes, the function is automatically called
@@ -93,6 +96,8 @@
 
 	:global(html){
 		overflow:hidden;
+  		touch-action: manipulation;
+		transform: translateZ(0);
 	}
 	:root {
 		--color-main: rgba(255, 252, 248, 1);

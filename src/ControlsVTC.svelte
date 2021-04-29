@@ -1,7 +1,6 @@
 <script>
     import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'
     import Btn from './SVUG-Btn.svelte'
-    import Slider from './SVUG-Slider.svelte'
     //quick easy animations when component created/destoryed
     import { fly } from 'svelte/transition'
 
@@ -16,16 +15,24 @@
     let vtcRight = false
     let vtcEnter = false
 
+    let address = ''
+
+    $: CrComLib.publishEvent('s', '1', address)
+
 </script>
 
 <div class='wrap'>
     <div class='wrap-input'>
-        <input>
-        <Btn>X</Btn>
+        <input bind:value={address}>
+        <Btn class='vtc-btn vtc-end'>X</Btn>
     </div>
     <div class='wrap-sub'>
         <div class='dpad-wrap' in:fly={transInDpad} out:fly={transOutDpad}>
             <div class='dpad'>
+                <!-- 
+                    because we used :global for dpad-btn we can borrow those classes from ControlsBlu
+                    Probably not a good idea long term, but we can do it
+                -->
                 <Btn class='dpad-btn up' bind:value={vtcUp}><img src="images/arrow-up.svg"></Btn>
                 <Btn class='dpad-btn right' bind:value={vtcRight}><img src="images/arrow-right.svg"></Btn>
                 <Btn class='dpad-btn left' bind:value={vtcLeft}><img src="images/arrow-left.svg"></Btn>
@@ -35,17 +42,36 @@
         </div>
         <div class='controls-wrap' in:fly={transInCtrls} out:fly={transOutCtrls}>
             <div class='mute-wrap'>
-                <Btn>Audio Mute</Btn>
-                <Btn>Video Mute</Btn>
+                <Btn class='vtc-btn vtc-reg' type='toggle'>Audio Mute</Btn>
+                <Btn class='vtc-btn vtc-reg' type='toggle'>Video Mute</Btn>
             </div>
-            <Btn>Share</Btn>
-            <Btn>Connect</Btn>
+            <Btn class='vtc-btn vtc-reg' type='toggle'>Share</Btn>
+            <Btn class='vtc-btn vtc-reg'>Connect</Btn>
         </div>
-        <Slider type='vert'></Slider>
     </div>
 </div>
 
 <style>
+    :global(.vtc-btn){
+        border-style: none;
+        color: white;
+        border-radius: 10px;
+        -webkit-box-shadow: 0px 17px 6px -7px rgba(0,0,0,0.15); 
+        box-shadow: 0px 17px 6px -7px rgba(0,0,0,0.15);
+    }
+    :global(.vtc-reg.true) {
+		background-color: var(--color-highlight-1);
+	}
+	:global(.vtc-reg.false) {
+		background-color: var(--color-highlight-2);
+	}
+    :global(.vtc-end.true) {
+		background-color: var(--color-highlight-2);
+	}
+	:global(.vtc-end.false) {
+		background-color: var(--color-highlight-1);
+	}
+
     .wrap {
         display: grid;
         grid-template-rows: 20% 80%;
@@ -71,8 +97,12 @@
         font-size: 100%;
         border: none;
         border-radius: 10px;
-        background-color: grey;
-        color: white
+        background-color: #e2e2e2;
+        color: #5d5d5d;
+        font-size: xx-large;
+        text-indent: 10px;
+        -webkit-box-shadow: inset 0px 4px 6px 2px rgba(0,0,0,0.51); 
+        box-shadow: inset 0px 4px 6px 2px rgba(0,0,0,0.51);
     }
     .controls-wrap {
         display: grid;

@@ -183,7 +183,7 @@
 	:global(.blu.true) {
 		color: var(--color-main);
 		background-color: var(--color-highlight);
-		border-color: var(--color-highlight);;
+		border-color: var(--color-highlight);
 	}
 
 	:global(.blu.false) {
