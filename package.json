@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@crestron/ch5-crcomlib": "^1.1.0",
+    "@crestron/ch5-webxpanel": "^1.0.3",
     "degit": "^2.8.0",
     "rollup-plugin-css-only": "^3.1.0",
     "sirv-cli": "^1.0.11"

@@ -1,13 +1,26 @@
 <script>
-	//import a library like CH5 CrComLib
-	import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'
+	//import a library like CH5 CrComLib or the WebXpanel
+	//Note WebXPanel MUST be loaded first per Crestron if used
+	import * as WebXPanel from '@crestron/ch5-webxpanel/dist/cjs/index.js'
+	import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib'
 
-	console.log(CrComLib)
 	//attach required CrComLib functions so Svelte can communicate with CH5
+	window.CrComLib = CrComLib
 	window.bridgeReceiveIntegerFromNative = CrComLib.bridgeReceiveIntegerFromNative
 	window.bridgeReceiveBooleanFromNative = CrComLib.bridgeReceiveBooleanFromNative
 	window.bridgeReceiveStringFromNative = CrComLib.bridgeReceiveStringFromNative
 	window.bridgeReceiveObjectFromNative = CrComLib.bridgeReceiveObjectFromNative
+
+	//xpanel configuration options
+	const configuration = { 
+		host: '', // XXX.XXX.XXX.XXX defaults to window.location.host 
+		ipId: '0x04', // string representing a hex value. Might contain "0x" or not. Defaults to "0x03" 
+	}
+
+	//if running as an xpanel, launch service
+	if (WebXPanel.isActive){ 
+		WebXPanel.default.initialize(configuration)
+	}
 
 	//eruda creates a mimic of Chrome Dev Tools on mobile/touch panels, this is automatically 
 	//removed if you use 'npm run ch5-build' or do not build for Dev
@@ -27,7 +40,6 @@
 
 	//import a Store to allow sharing of variables across components
 	import { presetShow } from './AppStore.js'
-import ControlsVtc from './ControlsVTC.svelte';
 
 	//these variables are accessible to the JS and HTML inside this file, don't worry about the odd
 	//use of 'let', it is how Svelte handles variables for compiling
@@ -42,7 +54,7 @@ import ControlsVtc from './ControlsVTC.svelte';
 	CrComLib.subscribeState('n', '3', (data)=>{
 		if(data == 3) controls = ControlsBlu
 		else if(data == 4) controls = ControlsVTC
-		else controls = ControlsVTC
+		else controls = ControlsDefault
 	})
 
 	//the $: makes this a reactive statement so whenever a value changes, the function is automatically called

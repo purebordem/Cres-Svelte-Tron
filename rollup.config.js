@@ -15,7 +15,7 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/bundle.js'
+		file: 'public/bundle.js',
 	},
 	plugins: [
 		svelte({
@@ -36,8 +36,8 @@ export default {
 			delimiters: ['', '.init()']
 		}),
 		css({ output: 'bundle.css' }),
-		resolve({ browser: true }),
 		commonjs(),
+		resolve({ browser: true }),
 
 		!production && livereload('public'),
 		production && terser()
