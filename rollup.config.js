@@ -5,6 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from "rollup-plugin-terser";
 import replace from '@rollup/plugin-replace';
 import json from '@rollup/plugin-json';
+import css from 'rollup-plugin-css-only';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -14,9 +15,15 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/bundle.js'
+		file: 'public/bundle.js',
 	},
 	plugins: [
+		svelte({
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !production
+			}
+		}),
 		json(),
 		production && replace({
 			'eruda': ``,
@@ -28,14 +35,9 @@ export default {
 			exclude: 'node_modules/**',
 			delimiters: ['', '.init()']
 		}),
-		svelte({
-			dev: !production,
-			css: css => {
-				css.write('public/bundle.css');
-			}
-		}),
-		resolve({ browser: true }),
+		css({ output: 'bundle.css' }),
 		commonjs(),
+		resolve({ browser: true }),
 
 		!production && livereload('public'),
 		production && terser()
