@@ -10,9 +10,11 @@ This is a un-offical project template and build pipeline for [Crestron CH-5](htt
 * [NPM Scripts](#npm-scripts)
 * [Node CH5-Run](#node-ch5-run)
 * [Mobile Console](#mobile-console)
+* [Xpanel Support](#xpanel-support)
 * [Rollup Config](#rollup-config)
 * [Known Issues](#known-issues)
 * [FAQ](#faq)
+* [Release Notes](#release-notes)
 ---
 
 ## Getting started
@@ -135,6 +137,25 @@ eruda.init();
 ```
 Rollup will automatically remove this when building for production (`npm run ch5-build` or `node ch5-run` with no `--dev` flag).
 
+## XPanel Support
+Crestron recently opened up support CH5 to work as an XPanel via the [@crestron/ch5-webxpanel](https://www.npmjs.com/package/@crestron/ch5-webxpanel) package. You will also need an active [SW-Mobility License](https://www.crestron.com/Products/Control-Hardware-Software/Software/Licensing/SW-MOBILITY) for this to work. A simple use-case has now been included in the demo project. 
+
+When working with `@crestron/ch5-webxpanel`, you must run import this package before importing the CrComLib. You must also insure the CrComLib is bound to the window since the ch5-webxpanel expects it to be globally available. Below is a basic implementatiom...
+```bash
+//import a library like CH5 CrComLib or the WebXpanel
+//Note WebXPanel MUST be loaded first per Crestron if used
+import * as WebXPanel from '@crestron/ch5-webxpanel/dist/cjs/index.js'
+import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib'
+
+//attach required CrComLib functions so Svelte can communicate with CH5
+window.CrComLib = CrComLib
+window.bridgeReceiveIntegerFromNative = CrComLib.bridgeReceiveIntegerFromNative
+window.bridgeReceiveBooleanFromNative = CrComLib.bridgeReceiveBooleanFromNative
+window.bridgeReceiveStringFromNative = CrComLib.bridgeReceiveStringFromNative
+window.bridgeReceiveObjectFromNative = CrComLib.bridgeReceiveObjectFromNative
+```
+More details about this package, the configuration options, and available methods, can be found at [Crestron's developer website](https://www.crestron.com/developer).
+
 ## Rollup Config
 Cres-Svelte-Tron uses Rollup as the app bundler since it is the default used by the [Svelte Template](https://github.com/sveltejs/template). Changes made to `rollup.config.js` will alter how Rollup bundles the project. You can add support for other features such as PostCSS, SASS, and others here. The `production` variable is used to tell Rollup what to do for production builds vs. dev builds. Some useful Rollup plugins are included by default in Cres-Svelte-Tron.
 
@@ -162,5 +183,16 @@ Everyone! More specifically, if you find yourself needing more flexibility than 
 ### How do I actually interface with the AV processor though?
 You need to use the `CrComLib` from Crestron. Make sure you have `import CrComLib from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib.js'` somewhere in your project. See the CH5-Utility-Functions section [here](https://sdkcon78221.crestron.com/downloads/ShowcaseApp/utility-functions/utility-subscribe-signal-script.html)
 
-### The demo app doesn't really do anything, I am not impressed
-Its just a test to make sure everything installed and is setup correctly. I don't have time to make a full fledge demo app XD.
+### The demo app sucks, I am not impressed
+It is a naive implementation to show some basic concepts of how to integrate Svelte with CH5. There better ways to do several things in the demo so do not take it as gospel. It also is probably broke in a few places because the SIMPL side is very very bare bones and quickly thrown together.
+
+### Where can I learn more about the CH5 side of things?
+Visit Crestron's developer portal at [crestron.com/developer](https://www.crestron.com/developer). Just keep in mind most of the content in the CH5 side is focused around their CH5-Component framework. However, there are still general insights for integrating other frameworks like Svelte, Angular, React, and others.
+
+## Release Notes
+* v1.0.1
+** Updated all pacakges and implemented Github security fixes
+** Added basic demo project along with SIMPL files for 3-Series processors
+** Implemented example for Web XPanel support
+* v1.0.0
+** Initial release
