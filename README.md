@@ -191,8 +191,9 @@ Visit Crestron's developer portal at [crestron.com/developer](https://www.crestr
 
 ## Release Notes
 * v1.0.1
-** Updated all pacakges and implemented Github security fixes
-** Added basic demo project along with SIMPL files for 3-Series processors
-** Implemented example for Web XPanel support
+  * Updated all packages and implemented Github security fixes
+  * Updated rollup config and ch5-run script to support latest version of dependencies
+  * Added basic demo project along with SIMPL files for 3-Series processors
+  * Implemented example for Web XPanel support
 * v1.0.0
-** Initial release
+  * Initial release
