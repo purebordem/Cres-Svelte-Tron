@@ -13,7 +13,7 @@
 
 	//xpanel configuration options
 	const configuration = { 
-		host: '192.168.1.100', // XXX.XXX.XXX.XXX defaults to window.location.host 
+		host: '', // XXX.XXX.XXX.XXX defaults to window.location.host 
 		ipId: '0x04', // string representing a hex value. Might contain "0x" or not. Defaults to "0x03" 
 	}
 
