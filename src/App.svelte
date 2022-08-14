@@ -15,7 +15,6 @@
 	const configuration = { 
 		host: '', // XXX.XXX.XXX.XXX defaults to window.location.host 
 		ipId: '0x04', // string representing a hex value. Might contain "0x" or not. Defaults to "0x03" 
-		//see https://www.npmjs.com/package/@crestron/ch5-webxpanel for more details
 	}
 
 	//if running as an xpanel, launch service

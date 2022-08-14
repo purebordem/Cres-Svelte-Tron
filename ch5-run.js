@@ -30,7 +30,7 @@ loadConfigFile(path.resolve(__dirname, 'rollup.config.js'))
 	console.log('Rollup.config.js loaded...');
 	warnings.flush();
 
-	const bundle = await rollup.rollup(options[0]);	
+	const bundle = await rollup.rollup(options[0]);
 	await Promise.all(options[0].output.map(bundle.write));
 	const watcher = rollup.watch(options[0]);
 	
