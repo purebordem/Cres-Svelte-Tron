@@ -18,6 +18,16 @@ export default {
 		file: 'public/bundle.js',
 	},
 	plugins: [
+		production && replace({
+			'import * as eruda from \'eruda\'': '',
+			exclude: 'node_modules/**',
+			delimiters: ['', '']
+		}),
+		production && replace({
+			'eruda.init()': '',
+			exclude: 'node_modules/**',
+			delimiters: ['', ''],
+		}),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
@@ -25,16 +35,6 @@ export default {
 			}
 		}),
 		json(),
-		production && replace({
-			'eruda': ``,
-			exclude: 'node_modules/**',
-			delimiters: ['import * as eruda from \'', '\'']
-		}),
-		production && replace({
-			'eruda': ``,
-			exclude: 'node_modules/**',
-			delimiters: ['', '.init()']
-		}),
 		css({ output: 'bundle.css' }),
 		commonjs(),
 		resolve({ browser: true }),
