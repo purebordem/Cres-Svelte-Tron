@@ -190,6 +190,9 @@ It is a naive implementation to show some basic concepts of how to integrate Sve
 Visit Crestron's developer portal at [crestron.com/developer](https://www.crestron.com/developer). Just keep in mind most of the content in the CH5 side is focused around their CH5-Component framework. However, there are still general insights for integrating other frameworks like Svelte, Angular, React, and others.
 
 ## Release Notes
+* V1.0.2
+  * Updated all packages and implemented Github security fixes
+  * Updated rollup config and ch5-run script to support latest version of dependencies
 * v1.0.1
   * Updated all packages and implemented Github security fixes
   * Updated rollup config and ch5-run script to support latest version of dependencies
